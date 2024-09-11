@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <header>
+        <a class="logo" href="#">
+            <img src="{% static "images/icons/logoNav.svg" %}">
+        </a>
+        <nav class="menu">
+            <ul>
+                <li><a class="button nav-btm" href="#">Marketplace</a></li>
+                <li><a class="button nav-btm" href="#">Ranking</a></li>
+                <li ><a class="button nav-btm" href="#">Connect a wallet</a></li>
+                
+                    {% if request.user.is_authenticated %}
+                        <li>
+                            <div class="avatar">
+                                <p>Hello, {{ request.user.first_name|default:request.user.username}}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="button background-btm" href="{% url "logout" %}">
+                                <img src="{% static "images/icons/UserWhite.svg" %}" width="20px" height="20px">
+                                Logout</a>
+                        </li>
+                        
+                    {% else %}
+                        <li>
+                            <a class="background-btm button" href="{% url "login" %}">
+                                <img src="{% static "images/icons/UserWhite.svg" %}" width="20px" height="20px">
+                                Login</a>
+                        </li>
+                        
+                    {% endif %}
+                    
+                
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="section">
+            {% block content %}
+            {% endblock content %}
+        
+    </section>
+    
+
+    <footer>
+        <div class="container">
+            <div class="footer-info">
+                <div class="footer-block">
+                    <div class="footer-block-header">
+
+                        <img src="{% static "images/icons/logoFooter.svg" %}" alt="">
+                    </div>
+                    <div class="footer-block-body">
+                        <p>NFT marketplace UI created <br>with Anima for Figma
+                        </p>
+                        <p>Join our community</p>
+                        <div class="footer-link">
+                            <a href="#">
+                                <img src="{% static "images/icons/DiscordLogo.svg" %} " alt="">
+                            </a>
+                            <a href="#">
+                                <img src="{% static "images/icons/YoutubeLogo.svg" %}" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="{% static "images/icons/TwitterLogo.svg" %}" alt="">
+                            </a>
+                            <a href="#">
+                                <img src="{% static "images/icons/InstagramLogo.svg" %}" alt="">
+                            </a>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="footer-block">
+                    
+                    <div class="footer-block-header">
+                        <h5>Explore</h5>
+                    </div>
+                    <div class="footer-block-body">
+                        <a href="#">Marketplace</a>
+                        <a href="#">Ranking</a>
+                        <a href="#">Connect a wallet</a>
+                    </div>
+
+                </div>
+                <div class="footer-block">
+                    <div class="footer-block-header">
+                        <h5>Join Our Weekly Digest</h5>
+                    </div>
+                    <div class="footer-block-body">
+                        <p>Get exclusive promotions & updates <br>straight to your inbox.</p>
+                        <form class="mail-form" method="post">
+                            <input type="email" placeholder="Enter your email here">
+                            <button class="button" type="button">Subscibe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="coopyrite">
+                <p>Ⓒ NFT Market. Use this template freely.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+   
+</html>

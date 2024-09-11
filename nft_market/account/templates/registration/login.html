@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Log-in{% endblock title %}
+
+{% block content %}
+    <div class="account-conteiner">
+        <img src="{% static "images/styling_images/registration.jpg" %}" alt="">
+        <div class="account-block">
+            <div class="account-header">
+                <h2>log-in account</h2>
+                {% if form.errors %}
+                    <p>
+                        Your Username and Password Didn't Match. <br>
+                        Please Try Again.
+                    </p>
+                {% else %}
+                    <p>Please, Use The Following Form to Log-in:</p>
+                    <p>If you don't have an account <a style="text-decoration: none; color: #a259ff" href="{% url "register" %}">register here.</a></p>
+                {% endif %}
+            </div>
+            <form action="{% url "login" %}" class="account-form" method="post">
+                <div class="input-icon">
+                    <img src="{% static "images/icons/User.svg" %}" alt="">
+                    <input type="text" name="username" placeholder="Username" required>
+                </div>
+                <div class="input-icon">
+                    <img src="{% static "images/icons/LockKey.svg" %}" alt="">
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <a class="button" href="{% url "password_reset" %}">Forgotten your password?</a>
+                <button class="button background-btm" type="submit">Login Account</button>
+                <p><input type="hidden" name="next" value="{{ next }}"></p>
+                {% csrf_token %}
+            </form>
+            
+        </div>
+        
+    </div>
+{% endblock content %}

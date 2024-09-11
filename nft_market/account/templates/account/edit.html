@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Edit your account{% endblock title %}
+
+{% block content %}
+<div class="account-conteiner">
+    <div class="account-block">
+        <div class="account-header">
+            <h2>Edit your account</h2>
+            <p>You can edit your account using the following form:</p>
+        </div>
+        <form class="account-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {% for field in  user_form %}
+                {% if field.errors %}
+                    <span class="error-text">{{ field.errors }}</span>
+                {% endif %}
+                <div class="input-icon">
+                    {{ field }}
+                </div>
+                <span class="help-text">{{ field.help_text }}</span>
+            {% endfor %}
+            {% for field in profile_form %}
+                {% if field.errors %}
+                    <span class="error-text">{{ field.errors }}</span>
+                {% endif %}
+                {{ field }}
+                <span class="help-text">{{ field.help_text }}</span>
+            {% endfor %}
+
+            <button class="button background-btm" type="submit">Save Changes</button>
+        </form>
+    </div>
+    
+</div>
+{% endblock content %}

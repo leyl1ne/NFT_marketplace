@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Logged Out{% endblock title %}
+
+{% block content %}
+<div class="account-conteiner">
+    <img src="{% static "images/styling_images/registration.jpg" %}" alt="">
+    <div class="account-block">
+        <div class="account-header">
+            <h2>Logged out</h2>
+            <p>
+                You Can Been Succsessfulley Logged Out. 
+            </p>
+        </div>
+        <div class="account-body">
+            <p>You Can</p>
+            <a class="button background-btm" href="{% url "login" %}">Log-in again</a> 
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}

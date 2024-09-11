@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Welcome{% endblock title %}
+
+{% block content %}
+    <div class="account-conteiner">
+        <img src="{% static "images/styling_images/registration.jpg" %}" alt="">
+        <div class="account-block">
+            <div class="account-header">
+                <h2>Welcome {{ new_username.username }}!</h2>
+                <p>
+                    Your account has been successfully created.
+                </p>
+            </div>
+            <div class="account-body">
+                <p>Now you can</p>
+                <a class="button background-btm" href="{% url "login" %}">Log in</a> 
+            </div>
+        </div>
+        
+    </div>
+{% endblock content %}
