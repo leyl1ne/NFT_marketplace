@@ -24,15 +24,16 @@
                 
                     {% if request.user.is_authenticated %}
                         <li>
-                            <div class="avatar">
-                                <p>Hello, {{ request.user.first_name|default:request.user.username}}</p>
-                            </div>
+                            <a class="button avatar" href="{% url "dashboard" %}">
+                                <img src="{{ request.user.profile.photo.url }}" alt="" width="20px" height="20px">
+                                <p>{{ request.user.first_name|default:request.user.username}}</p>
+                            </a>
                         </li>
-                        <li>
+                        {% comment %} <li>
                             <a class="button background-btm" href="{% url "logout" %}">
                                 <img src="{% static "images/icons/UserWhite.svg" %}" width="20px" height="20px">
                                 Logout</a>
-                        </li>
+                        </li> {% endcomment %}
                         
                     {% else %}
                         <li>

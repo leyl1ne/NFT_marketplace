@@ -1,10 +1,59 @@
 {% extends "base.html" %}
 
+{% load static %}
+
 {% block title %}Dashboard{% endblock title %}
 
 {% block content %}
-    <div class="container">
-        <h1>Dashboard</h1>
-        <p>Welcome to your dashboard.</p>
+<div class="profile-header">
+    <img src="{% static "images/styling_images/defaultProfileHeader.png" %}" alt="" width="100%" height="320px" >
+</div>
+<div class="container">
+    <img class="profile-avatar" src="{{ request.user.profile.photo.url }}" alt="" width="120px" height="120px">
+    <div class="profile">
+        <div class="profile-info">
+            <h2>{{ request.user.username }}</h2>
+            <ul class="profile-stats">
+                <li>
+                    <h4>240k+</h4>
+                    Volume
+                </li>
+                <li>
+                    <h4>100k+</h4>
+                    NFTs Sold
+                </li>
+                <li>
+                    <h4>240k+</h4>
+                    Followers
+                </li>
+            </ul>
+            <div class="profile-bio">
+                <h5 class="h5-Space-Mono">Bio</h5>
+                <p>Text bio</p>
+            </div>
+            <div class="profile-links" >
+                <h5 class="h5-Space-Mono">Links</h5>
+                <div class="links">
+                    <a class="button" href="#">
+                        <img src="{% static "images/icons/DiscordLogo.svg" %}" alt="">
+                    </a>
+                    <a class="button" href="#">
+                        <img src="{% static "images/icons/YoutubeLogo.svg" %}" alt="">
+                    </a>
+                    <a class="button" href="#">
+                        <img src="{% static "images/icons/TwitterLogo.svg" %}" alt="">
+                    </a>
+                    <a class="button" href="#">
+                        <img src="{% static "images/icons/InstagramLogo.svg" %}" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="profile-ection">
+            <a class="button background-btm" href="{% url "edit" %}">Edit Your Profile</a>
+            <a class="button background-btm" href="{% url "password_change" %}">Change Your Password</a>
+        </div>
     </div>
+    
+</div>
 {% endblock content %}
